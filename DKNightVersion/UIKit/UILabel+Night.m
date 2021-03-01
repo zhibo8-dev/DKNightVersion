@@ -51,5 +51,14 @@
     [self.pickers setValue:[picker copy] forKey:@"setHighlightedTextColor:"];
 }
 
+- (DKAttributedTextPicker)dk_attributedTextPicker {
+    return objc_getAssociatedObject(self, @selector(dk_attributedTextPicker));
+}
+- (void)dk_setAttributedTextPicker:(DKAttributedTextPicker)picker {
+    objc_setAssociatedObject(self, @selector(dk_attributedTextPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    self.attributedText = picker(self.dk_manager.themeVersion);
+    [self.pickers setValue:[picker copy] forKey:@"setAttributedText:"];
+}
+
 
 @end
