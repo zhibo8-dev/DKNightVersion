@@ -17,4 +17,6 @@
 
 - (void)dk_setImage:(DKImagePicker)picker forState:(UIControlState)state;
 
+- (void)dk_setAttributedTitle:(DKAttributedTextPicker)picker forState:(UIControlState)state;
+
 @end

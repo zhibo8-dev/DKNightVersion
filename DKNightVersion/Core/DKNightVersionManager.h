@@ -10,6 +10,7 @@
 #import "DKColor.h"
 #import "DKImage.h"
 #import "DKAlpha.h"
+#import "DKAttributedText.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

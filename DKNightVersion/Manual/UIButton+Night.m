@@ -50,6 +50,18 @@
     [self.pickers setValue:dictionary forKey:key];
 }
 
+- (void)dk_setAttributedTitle:(DKAttributedTextPicker)picker forState:(UIControlState)state {
+    [self setAttributedTitle:picker(self.dk_manager.themeVersion) forState:state];
+    NSString *key = [NSString stringWithFormat:@"%@", @(state)];
+    NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
+    if (!dictionary) {
+        dictionary = [[NSMutableDictionary alloc] init];
+    }
+    [dictionary setValue:[picker copy] forKey:NSStringFromSelector(@selector(setAttributedTitle:forState:))];
+    [self.pickers setValue:dictionary forKey:key];
+
+}
+
 - (void)night_updateColor {
     [self.pickers enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSDictionary class]]) {
@@ -67,6 +79,9 @@
                                      } else if ([selector isEqualToString:NSStringFromSelector(@selector(setImage:forState:))]) {
                                          UIImage *resultImage = ((DKImagePicker)picker)(self.dk_manager.themeVersion);
                                          [self setImage:resultImage forState:state];
+                                     } else if ([selector isEqualToString:NSStringFromSelector(@selector(setAttributedTitle:forState:))]) {
+                                         NSAttributedString *string = ((DKAttributedTextPicker)picker)(self.dk_manager.themeVersion);
+                                         [self setAttributedTitle:string forState:state];
                                      }
                                  }];
             }];

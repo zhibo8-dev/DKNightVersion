@@ -76,6 +76,8 @@
 		72E18B9B1CBA03480004EBB2 /* DKColorTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 72E18B631CBA03480004EBB2 /* DKColorTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72E18B9C1CBA03480004EBB2 /* DKColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E18B641CBA03480004EBB2 /* DKColorTable.m */; };
 		72E18B9D1CBA03480004EBB2 /* DKColorTable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 72E18B651CBA03480004EBB2 /* DKColorTable.txt */; };
+		ECE0F7B025ECC302008F30D9 /* DKAttributedText.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE0F7AE25ECC302008F30D9 /* DKAttributedText.h */; };
+		ECE0F7B125ECC302008F30D9 /* DKAttributedText.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE0F7AF25ECC302008F30D9 /* DKAttributedText.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +152,8 @@
 		72E18B631CBA03480004EBB2 /* DKColorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKColorTable.h; sourceTree = "<group>"; };
 		72E18B641CBA03480004EBB2 /* DKColorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKColorTable.m; sourceTree = "<group>"; };
 		72E18B651CBA03480004EBB2 /* DKColorTable.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DKColorTable.txt; sourceTree = "<group>"; };
+		ECE0F7AE25ECC302008F30D9 /* DKAttributedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKAttributedText.h; sourceTree = "<group>"; };
+		ECE0F7AF25ECC302008F30D9 /* DKAttributedText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKAttributedText.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +292,8 @@
 		72E18B591CBA03480004EBB2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ECE0F7AE25ECC302008F30D9 /* DKAttributedText.h */,
+				ECE0F7AF25ECC302008F30D9 /* DKAttributedText.m */,
 				72E18B5A1CBA03480004EBB2 /* DKColor.h */,
 				72E18B5B1CBA03480004EBB2 /* DKColor.m */,
 				72E18B5C1CBA03480004EBB2 /* DKImage.h */,
@@ -327,6 +333,7 @@
 				7287AB781D0437A300D544B4 /* UITextView+Keyboard.h in Headers */,
 				72E18B761CBA03480004EBB2 /* UISwitch+Night.h in Headers */,
 				72E18B701CBA03480004EBB2 /* UIProgressView+Night.h in Headers */,
+				ECE0F7B025ECC302008F30D9 /* DKAttributedText.h in Headers */,
 				72E18B6A1CBA03480004EBB2 /* UILabel+Night.h in Headers */,
 				72E18B801CBA03480004EBB2 /* UIToolbar+Night.h in Headers */,
 				72E18B881CBA03480004EBB2 /* UINavigationBar+Animation.h in Headers */,
@@ -397,6 +404,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 7293232A1CB9F98C009E544E;
@@ -447,6 +455,7 @@
 				729A5D601CBB347700E8A164 /* README.md in Sources */,
 				72E18B671CBA03480004EBB2 /* UIBarButtonItem+Night.m in Sources */,
 				72E18B851CBA03480004EBB2 /* UIButton+Night.m in Sources */,
+				ECE0F7B125ECC302008F30D9 /* DKAttributedText.m in Sources */,
 				72E18B9C1CBA03480004EBB2 /* DKColorTable.m in Sources */,
 				72E18B7F1CBA03480004EBB2 /* UITextView+Night.m in Sources */,
 				729A5D641CBB363600E8A164 /* UITextField+Keyboard.m in Sources */,
