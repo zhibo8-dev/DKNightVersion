@@ -76,7 +76,7 @@
 		72E18B9B1CBA03480004EBB2 /* DKColorTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 72E18B631CBA03480004EBB2 /* DKColorTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72E18B9C1CBA03480004EBB2 /* DKColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E18B641CBA03480004EBB2 /* DKColorTable.m */; };
 		72E18B9D1CBA03480004EBB2 /* DKColorTable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 72E18B651CBA03480004EBB2 /* DKColorTable.txt */; };
-		ECE0F7B025ECC302008F30D9 /* DKAttributedText.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE0F7AE25ECC302008F30D9 /* DKAttributedText.h */; };
+		ECE0F7B025ECC302008F30D9 /* DKAttributedText.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE0F7AE25ECC302008F30D9 /* DKAttributedText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ECE0F7B125ECC302008F30D9 /* DKAttributedText.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE0F7AF25ECC302008F30D9 /* DKAttributedText.m */; };
 /* End PBXBuildFile section */
 
