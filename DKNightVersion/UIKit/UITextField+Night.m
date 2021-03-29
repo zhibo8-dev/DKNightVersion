@@ -34,7 +34,7 @@
 - (DKAttributedTextPicker)dk_attributedText {
     return objc_getAssociatedObject(self, @selector(dk_attributedText));
 }
-- (void)dk_setAttributedText:(DKAttributedTextPicker)dk_attributedText {
+- (void)dk_setAttributedText:(DKAttributedTextPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_attributedText), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
     self.attributedText = picker(self.dk_manager.themeVersion);
     [self.pickers setValue:[picker copy] forKey:@"setAttributedText:"];
@@ -43,7 +43,7 @@
 - (DKAttributedTextPicker)dk_attributedPlaceholder {
     return objc_getAssociatedObject(self, @selector(dk_attributedPlaceholder));
 }
-- (void)dk_setAttributedPlaceholder:(DKAttributedTextPicker)dk_attributedPlaceholder {
+- (void)dk_setAttributedPlaceholder:(DKAttributedTextPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_attributedPlaceholder), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
     self.attributedPlaceholder = picker(self.dk_manager.themeVersion);
     [self.pickers setValue:[picker copy] forKey:@"setAttributedPlaceholder:"];
