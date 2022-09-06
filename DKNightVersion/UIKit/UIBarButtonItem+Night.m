@@ -14,7 +14,6 @@
 
 @interface UIBarButtonItem ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
 
 @end
 
@@ -27,7 +26,9 @@
 
 - (void)dk_setTintColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_tintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.tintColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.tintColor = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setTintColor:"];
 }
 

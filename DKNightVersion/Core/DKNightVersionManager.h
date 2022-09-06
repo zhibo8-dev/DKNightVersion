@@ -101,6 +101,10 @@ extern CGFloat const DKNightVersionAnimationDuration;
  */
 - (void)dawnComing;
 
+
+- (void)toggleTheme;
+
+
 /** 
  *  This method is deprecated, use `- [DKNightVersion sharedManager]` instead
  */

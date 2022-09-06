@@ -19,8 +19,8 @@
 
 - (void)dk_setTitleColorPicker:(DKColorPicker)picker forState:(UIControlState)state {
     if (picker) {
-        [self setTitleColor:picker(self.dk_manager.themeVersion) forState:state];
-    }    
+        [self setTitleColor:picker(self.targetThemeVersion) forState:state];
+    }
     NSString *key = [NSString stringWithFormat:@"%@", @(state)];
     NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
     if (!dictionary) {
@@ -31,7 +31,9 @@
 }
 
 - (void)dk_setBackgroundImage:(DKImagePicker)picker forState:(UIControlState)state {
-    [self setBackgroundImage:picker(self.dk_manager.themeVersion) forState:state];
+    if (picker) {
+        [self setBackgroundImage:picker(self.targetThemeVersion) forState:state];
+    }
     NSString *key = [NSString stringWithFormat:@"%@", @(state)];
     NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
     if (!dictionary) {
@@ -42,7 +44,9 @@
 }
 
 - (void)dk_setImage:(DKImagePicker)picker forState:(UIControlState)state {
-    [self setImage:picker(self.dk_manager.themeVersion) forState:state];
+    if (picker) {
+        [self setImage:picker(self.targetThemeVersion) forState:state];
+    }
     NSString *key = [NSString stringWithFormat:@"%@", @(state)];
     NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
     if (!dictionary) {
@@ -53,7 +57,9 @@
 }
 
 - (void)dk_setAttributedTitle:(DKAttributedTextPicker)picker forState:(UIControlState)state {
-    [self setAttributedTitle:picker(self.dk_manager.themeVersion) forState:state];
+    if (picker) {
+        [self setAttributedTitle:picker(self.targetThemeVersion) forState:state];
+    }
     NSString *key = [NSString stringWithFormat:@"%@", @(state)];
     NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
     if (!dictionary) {
@@ -64,7 +70,7 @@
 
 }
 
-- (void)night_updateColor {
+- (void)night_updateColor_business {
     [self.pickers enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSDictionary class]]) {
             NSDictionary<NSString *, DKColorPicker> *dictionary = (NSDictionary *)obj;
@@ -73,16 +79,16 @@
                 [UIView animateWithDuration:DKNightVersionAnimationDuration
                                  animations:^{
                                      if ([selector isEqualToString:NSStringFromSelector(@selector(setTitleColor:forState:))]) {
-                                         UIColor *resultColor = picker(self.dk_manager.themeVersion);
+                                         UIColor *resultColor = picker(self.targetThemeVersion);
                                          [self setTitleColor:resultColor forState:state];
                                      } else if ([selector isEqualToString:NSStringFromSelector(@selector(setBackgroundImage:forState:))]) {
-                                         UIImage *resultImage = ((DKImagePicker)picker)(self.dk_manager.themeVersion);
+                                         UIImage *resultImage = ((DKImagePicker)picker)(self.targetThemeVersion);
                                          [self setBackgroundImage:resultImage forState:state];
                                      } else if ([selector isEqualToString:NSStringFromSelector(@selector(setImage:forState:))]) {
-                                         UIImage *resultImage = ((DKImagePicker)picker)(self.dk_manager.themeVersion);
+                                         UIImage *resultImage = ((DKImagePicker)picker)(self.targetThemeVersion);
                                          [self setImage:resultImage forState:state];
                                      } else if ([selector isEqualToString:NSStringFromSelector(@selector(setAttributedTitle:forState:))]) {
-                                         NSAttributedString *string = ((DKAttributedTextPicker)picker)(self.dk_manager.themeVersion);
+                                         NSAttributedString *string = ((DKAttributedTextPicker)picker)(self.targetThemeVersion);
                                          [self setAttributedTitle:string forState:state];
                                      }
                                  }];
@@ -90,7 +96,7 @@
         } else {
             SEL sel = NSSelectorFromString(key);
             DKColorPicker picker = (DKColorPicker)obj;
-            UIColor *resultColor = picker(self.dk_manager.themeVersion);
+            UIColor *resultColor = picker(self.targetThemeVersion);
             [UIView animateWithDuration:DKNightVersionAnimationDuration
                              animations:^{
 #pragma clang diagnostic push

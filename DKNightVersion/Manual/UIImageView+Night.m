@@ -20,7 +20,7 @@
 @implementation UIImageView (Night)
 
 - (instancetype)dk_initWithImagePicker:(DKImagePicker)picker {
-    UIImageView *imageView = [self initWithImage:picker(self.dk_manager.themeVersion)];
+    UIImageView *imageView = [self initWithImage:picker(self.targetThemeVersion)];
     imageView.dk_imagePicker = [picker copy];
     return imageView;
 }
@@ -31,7 +31,9 @@
 
 - (void)dk_setImagePicker:(DKImagePicker)picker {
     objc_setAssociatedObject(self, @selector(dk_imagePicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.image = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.image = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setImage:"];
 
 }
@@ -42,15 +44,17 @@
 
 - (void)dk_setAlphaPicker:(DKAlphaPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_alphaPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.alpha = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.alpha = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setAlpha:"];
 }
 
-- (void)night_updateColor {
+- (void)night_updateColor_business {
     [self.pickers enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([key isEqualToString:@"setAlpha:"]) {
             DKAlphaPicker picker = (DKAlphaPicker)obj;
-            CGFloat alpha = picker(self.dk_manager.themeVersion);
+            CGFloat alpha = picker(self.targetThemeVersion);
             [UIView animateWithDuration:DKNightVersionAnimationDuration
                              animations:^{
                                 ((void (*)(id, SEL, CGFloat))objc_msgSend)(self, NSSelectorFromString(key), alpha);
@@ -58,7 +62,7 @@
         } else {
             SEL sel = NSSelectorFromString(key);
             DKColorPicker picker = (DKColorPicker)obj;
-            UIColor *resultColor = picker(self.dk_manager.themeVersion);
+            UIColor *resultColor = picker(self.targetThemeVersion);
             [UIView animateWithDuration:DKNightVersionAnimationDuration
                              animations:^{
 #pragma clang diagnostic push

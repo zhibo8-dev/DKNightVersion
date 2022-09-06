@@ -13,7 +13,7 @@ NSString * const DKThemeVersionNight = @"NIGHT";
 
 NSString * const DKNightVersionThemeChangingNotification = @"DKNightVersionThemeChangingNotification";
 
-CGFloat const DKNightVersionAnimationDuration = 0.3;
+CGFloat const DKNightVersionAnimationDuration = 0;
 
 NSString * const DKNightVersionCurrentThemeVersionKey = @"com.dknightversion.manager.themeversion";
 
@@ -23,17 +23,25 @@ NSString * const DKNightVersionCurrentThemeVersionKey = @"com.dknightversion.man
 
 @implementation DKNightVersionManager
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        DKThemeVersion *themeVersion = [userDefaults valueForKey:DKNightVersionCurrentThemeVersionKey];
+        themeVersion = themeVersion ?: DKThemeVersionNormal;
+        _themeVersion = themeVersion;
+        _changeStatusBar = YES;
+        _supportsKeyboard = YES;
+    }
+    return self;
+}
+
 + (DKNightVersionManager *)sharedManager {
     static dispatch_once_t once;
     static DKNightVersionManager *instance;
     dispatch_once(&once, ^{
         instance = [self new];
-        instance.changeStatusBar = YES;
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        DKThemeVersion *themeVersion = [userDefaults valueForKey:DKNightVersionCurrentThemeVersionKey];
-        themeVersion = themeVersion ?: DKThemeVersionNormal;
-        instance.themeVersion = themeVersion;
-        instance.supportsKeyboard = YES;
     });
     return instance;
 }
@@ -48,6 +56,16 @@ NSString * const DKNightVersionCurrentThemeVersionKey = @"com.dknightversion.man
 
 - (void)dawnComing {
     self.themeVersion = DKThemeVersionNormal;
+}
+
+
+- (void)toggleTheme;
+{
+    if ([self.themeVersion isEqualToString:DKThemeVersionNormal]) {
+        self.themeVersion = DKThemeVersionNight;
+    } else {
+        self.themeVersion = DKThemeVersionNormal;
+    }
 }
 
 - (void)setThemeVersion:(DKThemeVersion *)themeVersion {

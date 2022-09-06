@@ -12,7 +12,6 @@
 
 @interface NSObject ()
 
-- (void)night_updateColor;
 
 @end
 
@@ -49,7 +48,7 @@
 
 - (instancetype)dk_init {
     UISearchBar *obj = [self dk_init];
-    if (self.dk_manager.supportsKeyboard && [self.dk_manager.themeVersion isEqualToString:DKThemeVersionNight]) {
+    if (self.dk_manager.supportsKeyboard && [self.targetThemeVersion isEqualToString:DKThemeVersionNight]) {
         
         if ([[[UIDevice currentDevice]systemVersion] floatValue] >= 13.0) {
             UISearchTextField *searchField = obj.searchTextField;
@@ -71,9 +70,8 @@
     return obj;
 }
 
-- (void)night_updateColor {
-    [super night_updateColor];
-    if (self.dk_manager.supportsKeyboard && [self.dk_manager.themeVersion isEqualToString:DKThemeVersionNight]) {
+- (void)did_updateColor_business {
+    if (self.dk_manager.supportsKeyboard && [self.targetThemeVersion isEqualToString:DKThemeVersionNight]) {
         if ([[[UIDevice currentDevice]systemVersion] floatValue] >= 13.0) {
         UISearchTextField *searchField = self.searchTextField;
         searchField.keyboardAppearance = UIKeyboardAppearanceDark;

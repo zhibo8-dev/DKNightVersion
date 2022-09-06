@@ -14,7 +14,7 @@
 
 @interface UITextField ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
+
 
 @end
 
@@ -27,7 +27,9 @@
 
 - (void)dk_setTextColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_textColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.textColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.textColor = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setTextColor:"];
 }
 
@@ -36,7 +38,9 @@
 }
 - (void)dk_setAttributedText:(DKAttributedTextPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_attributedText), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.attributedText = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.attributedText = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setAttributedText:"];
 }
 
@@ -45,7 +49,9 @@
 }
 - (void)dk_setAttributedPlaceholder:(DKAttributedTextPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_attributedPlaceholder), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.attributedPlaceholder = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.attributedPlaceholder = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setAttributedPlaceholder:"];
 }
 

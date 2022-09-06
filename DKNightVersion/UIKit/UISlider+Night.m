@@ -14,7 +14,7 @@
 
 @interface UISlider ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
+
 
 @end
 
@@ -27,7 +27,9 @@
 
 - (void)dk_setMinimumTrackTintColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_minimumTrackTintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.minimumTrackTintColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.minimumTrackTintColor = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setMinimumTrackTintColor:"];
 }
 
@@ -37,7 +39,9 @@
 
 - (void)dk_setMaximumTrackTintColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_maximumTrackTintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.maximumTrackTintColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.maximumTrackTintColor = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setMaximumTrackTintColor:"];
 }
 
@@ -47,7 +51,9 @@
 
 - (void)dk_setThumbTintColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_thumbTintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.thumbTintColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.thumbTintColor = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setThumbTintColor:"];
 }
 

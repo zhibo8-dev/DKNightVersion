@@ -14,7 +14,7 @@
 
 @interface UITextView ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
+
 
 @end
 
@@ -27,7 +27,9 @@
 
 - (void)dk_setTextColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_textColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.textColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.textColor = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setTextColor:"];
 }
 

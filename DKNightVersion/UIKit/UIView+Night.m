@@ -14,7 +14,7 @@
 
 @interface UIView ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, DKColorPicker> *pickers;
+
 
 @end
 
@@ -27,7 +27,9 @@
 
 - (void)dk_setBackgroundColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_backgroundColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.backgroundColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.backgroundColor = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setBackgroundColor:"];
 }
 
@@ -37,8 +39,56 @@
 
 - (void)dk_setTintColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_tintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.tintColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.tintColor = picker(self.targetThemeVersion);
+    }
     [self.pickers setValue:[picker copy] forKey:@"setTintColor:"];
 }
+
+
+#pragma mark - 方法交换
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self swizzleInstanceMethod:@selector(didMoveToWindow) with:@selector(dk_didMoveToWindow)];
+    });
+}
+
+- (void)dk_didMoveToWindow
+{
+    [self dk_didMoveToWindow];
+    
+    if (self.window) {
+        [self dk_addColorChangeNoti];
+        // 被加到父控件上的时候 如果父控件限定了颜色模式 子控件按需跟随
+        if (self.superview.enableThemeVersion && !self.igonreSuperColorMode) {
+            self.enableThemeVersion = self.superview.enableThemeVersion;
+        }
+        [self night_updateColor];
+    } else {
+        [self dk_removeColorChangeNoti];
+    }
+}
+
++ (BOOL)swizzleInstanceMethod:(SEL)originalSel with:(SEL)newSel {
+    Method originalMethod = class_getInstanceMethod(self, originalSel);
+    Method newMethod = class_getInstanceMethod(self, newSel);
+    if (!originalMethod || !newMethod) return NO;
+    
+    class_addMethod(self,
+                    originalSel,
+                    class_getMethodImplementation(self, originalSel),
+                    method_getTypeEncoding(originalMethod));
+    class_addMethod(self,
+                    newSel,
+                    class_getMethodImplementation(self, newSel),
+                    method_getTypeEncoding(newMethod));
+    
+    method_exchangeImplementations(class_getInstanceMethod(self, originalSel),
+                                   class_getInstanceMethod(self, newSel));
+    return YES;
+}
+
 
 @end
