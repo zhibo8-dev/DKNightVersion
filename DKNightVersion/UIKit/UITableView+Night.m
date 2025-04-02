@@ -27,7 +27,11 @@
 
 - (void)dk_setSeparatorColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_separatorColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.separatorColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.separatorColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.separatorColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setSeparatorColor:"];
 }
 
@@ -37,7 +41,11 @@
 
 - (void)dk_setSectionIndexColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_sectionIndexColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.sectionIndexColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.sectionIndexColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.sectionIndexColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setSectionIndexColor:"];
 }
 
@@ -47,7 +55,11 @@
 
 - (void)dk_setSectionIndexBackgroundColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_sectionIndexBackgroundColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.sectionIndexBackgroundColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.sectionIndexBackgroundColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.sectionIndexBackgroundColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setSectionIndexBackgroundColor:"];
 }
 
@@ -57,7 +69,11 @@
 
 - (void)dk_setSectionIndexTrackingBackgroundColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_sectionIndexTrackingBackgroundColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.sectionIndexTrackingBackgroundColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.sectionIndexTrackingBackgroundColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.sectionIndexTrackingBackgroundColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setSectionIndexTrackingBackgroundColor:"];
 }
 

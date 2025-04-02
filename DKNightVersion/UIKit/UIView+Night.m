@@ -27,7 +27,11 @@
 
 - (void)dk_setBackgroundColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_backgroundColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.backgroundColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.backgroundColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.backgroundColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setBackgroundColor:"];
 }
 
@@ -37,7 +41,11 @@
 
 - (void)dk_setTintColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_tintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.tintColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.tintColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.tintColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setTintColor:"];
 }
 

@@ -31,7 +31,11 @@
 
 - (void)dk_setImagePicker:(DKImagePicker)picker {
     objc_setAssociatedObject(self, @selector(dk_imagePicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.image = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.image = picker(self.dk_manager.themeVersion);
+    } else {
+        self.image = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setImage:"];
 
 }
@@ -42,7 +46,11 @@
 
 - (void)dk_setAlphaPicker:(DKAlphaPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_alphaPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.alpha = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.alpha = picker(self.dk_manager.themeVersion);
+    } else {
+        self.alpha = 1.0;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setAlpha:"];
 }
 

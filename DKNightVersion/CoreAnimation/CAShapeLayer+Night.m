@@ -23,7 +23,11 @@
 
 - (void)setDk_strokeColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_strokeColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.strokeColor = picker(self.dk_manager.themeVersion).CGColor;
+    if (picker) {
+        self.strokeColor = picker(self.dk_manager.themeVersion).CGColor;
+    } else {
+        self.strokeColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:NSStringFromSelector(@selector(setStrokeColor:))];
 }
 
@@ -33,7 +37,11 @@
 
 - (void)setDk_fillColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_fillColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.fillColor = picker(self.dk_manager.themeVersion).CGColor;
+    if (picker) {
+        self.fillColor = picker(self.dk_manager.themeVersion).CGColor;
+    } else {
+        self.fillColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:NSStringFromSelector(@selector(setFillColor:))];
 }
 

@@ -20,7 +20,9 @@
 - (void)dk_setTitleColorPicker:(DKColorPicker)picker forState:(UIControlState)state {
     if (picker) {
         [self setTitleColor:picker(self.dk_manager.themeVersion) forState:state];
-    }    
+    } else {
+        [self setTitleColor:nil forState:state];
+    }
     NSString *key = [NSString stringWithFormat:@"%@", @(state)];
     NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
     if (!dictionary) {
@@ -31,7 +33,11 @@
 }
 
 - (void)dk_setBackgroundImage:(DKImagePicker)picker forState:(UIControlState)state {
-    [self setBackgroundImage:picker(self.dk_manager.themeVersion) forState:state];
+    if (picker) {
+        [self setBackgroundImage:picker(self.dk_manager.themeVersion) forState:state];
+    } else {
+        [self setBackgroundImage:nil forState:state];
+    }
     NSString *key = [NSString stringWithFormat:@"%@", @(state)];
     NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
     if (!dictionary) {
@@ -42,7 +48,11 @@
 }
 
 - (void)dk_setImage:(DKImagePicker)picker forState:(UIControlState)state {
-    [self setImage:picker(self.dk_manager.themeVersion) forState:state];
+    if (picker) {
+        [self setImage:picker(self.dk_manager.themeVersion) forState:state];
+    } else {
+        [self setImage:nil forState:state];
+    }
     NSString *key = [NSString stringWithFormat:@"%@", @(state)];
     NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
     if (!dictionary) {
@@ -53,7 +63,11 @@
 }
 
 - (void)dk_setAttributedTitle:(DKAttributedTextPicker)picker forState:(UIControlState)state {
-    [self setAttributedTitle:picker(self.dk_manager.themeVersion) forState:state];
+    if (picker) {
+        [self setAttributedTitle:picker(self.dk_manager.themeVersion) forState:state];
+    } else {
+        [self setAttributedTitle:nil forState:state];
+    }
     NSString *key = [NSString stringWithFormat:@"%@", @(state)];
     NSMutableDictionary *dictionary = [self.pickers valueForKey:key];
     if (!dictionary) {

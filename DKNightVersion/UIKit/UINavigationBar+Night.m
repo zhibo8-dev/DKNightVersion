@@ -27,7 +27,11 @@
 
 - (void)dk_setBarTintColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_barTintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.barTintColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.barTintColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.barTintColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setBarTintColor:"];
 }
 
@@ -37,7 +41,11 @@
 
 - (void)dk_setTintColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_tintColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.tintColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.tintColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.tintColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setTintColor:"];
 }
 

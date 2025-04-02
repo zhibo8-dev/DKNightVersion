@@ -27,7 +27,11 @@
 
 - (void)dk_setTextColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_textColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.textColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.textColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.textColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setTextColor:"];
 }
 
@@ -37,7 +41,11 @@
 
 - (void)dk_setShadowColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_shadowColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.shadowColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.shadowColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.shadowColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setShadowColor:"];
 }
 
@@ -47,7 +55,11 @@
 
 - (void)dk_setHighlightedTextColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_highlightedTextColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.highlightedTextColor = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.highlightedTextColor = picker(self.dk_manager.themeVersion);
+    } else {
+        self.highlightedTextColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setHighlightedTextColor:"];
 }
 
@@ -56,7 +68,11 @@
 }
 - (void)dk_setAttributedTextPicker:(DKAttributedTextPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_attributedTextPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.attributedText = picker(self.dk_manager.themeVersion);
+    if (picker) {
+        self.attributedText = picker(self.dk_manager.themeVersion);
+    } else {
+        self.attributedText = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:@"setAttributedText:"];
 }
 

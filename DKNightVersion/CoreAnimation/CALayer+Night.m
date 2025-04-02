@@ -23,7 +23,11 @@
 
 - (void)setDk_shadowColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_shadowColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.shadowColor = picker(self.dk_manager.themeVersion).CGColor;
+    if (picker) {
+        self.shadowColor = picker(self.dk_manager.themeVersion).CGColor;
+    } else {
+        self.shadowColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:NSStringFromSelector(@selector(setShadowColor:))];
 }
 
@@ -33,7 +37,11 @@
 
 - (void)setDk_borderColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_borderColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.borderColor = picker(self.dk_manager.themeVersion).CGColor;
+    if (picker) {
+        self.borderColor = picker(self.dk_manager.themeVersion).CGColor;
+    } else {
+        self.borderColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:NSStringFromSelector(@selector(setBorderColor:))];
 }
 
@@ -43,7 +51,11 @@
 
 - (void)setDk_backgroundColorPicker:(DKColorPicker)picker {
     objc_setAssociatedObject(self, @selector(dk_backgroundColorPicker), picker, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    self.backgroundColor = picker(self.dk_manager.themeVersion).CGColor;
+    if (picker) {
+        self.backgroundColor = picker(self.dk_manager.themeVersion).CGColor;
+    } else {
+        self.backgroundColor = nil;
+    }
     [self.pickers setValue:[picker copy] forKey:NSStringFromSelector(@selector(setBackgroundColor:))];
 }
 
